@@ -117,6 +117,7 @@ class main {
                             System.out.println("Escuchando " + it.next());
                         } else {
                             System.out.println("Ya no hay más canciones");
+                            it.previous();
                             haciaAdelante = false;
                         }
                         break;
@@ -130,6 +131,7 @@ class main {
                             System.out.println("Escuchando " + it.previous());
                         } else {
                             System.out.println("Primera canción");
+                            it.next();
                             haciaAdelante = true;
                         }
                         break;
@@ -153,12 +155,23 @@ class main {
                             it.next();
                             System.out.println(it.previous().getTitulo() + " esta cancion a sido eliminada.");
                             it.remove();
+                            if(it.hasNext()){
+                                System.out.println("Escuchando " + it.next());
+                            }else {
+                                System.out.println("Escuchando " + it.previous());
+                            }
+                            break;
                         }else {
                             it.previous();
                             System.out.println(it.next().getTitulo() + " esta cancion a sido eliminada.");
                             it.remove();
+                            if(it.hasNext()){
+                                System.out.println("Escuchando " + it.next());
+                            }else {
+                                System.out.println("Escuchando " + it.previous());
+                            }
+                            break;
                         }
-                        break;
                     default:
                         System.out.println("No puedes poner ese número.");
                 }
