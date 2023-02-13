@@ -149,13 +149,14 @@ class main {
                         MenuPrin();
                         break;
                     case 6:
-                        it.previous();
-                        System.out.println(it.next().getTitulo() + " esta cancion a sido eliminada.");
-                        it.remove();
-                        if(it.hasNext()){
-                            System.out.println("Escuchando a " + it.next());
+                        if(!haciaAdelante) {
+                            it.next();
+                            System.out.println(it.previous().getTitulo() + " esta cancion a sido eliminada.");
+                            it.remove();
                         }else {
-                            System.out.println("Escuchando a " + it.previous());
+                            it.previous();
+                            System.out.println(it.next().getTitulo() + " esta cancion a sido eliminada.");
+                            it.remove();
                         }
                         break;
                     default:
