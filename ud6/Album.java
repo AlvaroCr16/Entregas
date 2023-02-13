@@ -105,6 +105,7 @@ class main {
                 op = sc.nextInt();
                 switch (op) {
                     case 0:
+                        System.out.println("Hasta la proxima.");
                         cont = false;
                         break;
                     case 1:
