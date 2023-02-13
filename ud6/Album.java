@@ -97,10 +97,9 @@ class main {
             System.out.println("Escuchando " + it.next());
             MenuPrin();
         }
-        while (cont) {
-            try {
-                boolean haciaAdelante = true;
-
+        boolean haciaAdelante = true;
+        try {
+            while (cont) {
                 System.out.println("¿Que quiere hacer? ");
                 op = sc.nextInt();
                 switch (op) {
@@ -135,7 +134,13 @@ class main {
                         }
                         break;
                     case 3:
-                        System.out.println("Escuchando " + it.next());
+                        if(!haciaAdelante) {
+                            it.next();
+                            System.out.println("Escuchando: " + it.previous());
+                        }else {
+                            it.previous();
+                            System.out.println("Escuchando: " + it.next());
+                        }
                         break;
                     case 4:
                         printList(playlist);
@@ -145,23 +150,22 @@ class main {
                         break;
                     case 6:
                         it.previous();
-                        System.out.println(it.next().getTitulo() + "esta cancion a sido eliminada.");
+                        System.out.println(it.next().getTitulo() + " esta cancion a sido eliminada.");
                         it.remove();
-                        if (it.hasNext()) {
+                        if(it.hasNext()){
                             System.out.println("Escuchando a " + it.next());
-                        } else {
+                        }else {
                             System.out.println("Escuchando a " + it.previous());
                         }
                         break;
                     default:
                         System.out.println("No puedes poner ese número.");
                 }
-
-            } catch (InputMismatchException e) {
-                System.out.println("No puedes poner letras");
-            } catch (NoSuchElementException e) {
-                System.out.println("No hay más canciones.");
             }
+        } catch (InputMismatchException e) {
+            System.out.println("No puedes poner letras");
+        } catch (NoSuchElementException e){
+            System.out.println("No hay más canciones.");
         }
     }
     public static void MenuPrin () {
