@@ -14,7 +14,7 @@ class Cancion {
     public String toString() {
         return "Cancion: \n" +
                 "Titulo = " + titulo +
-                " / Duracion=" + duracion + "\n";
+                " / Duracion = " + duracion + "\n";
     }
 }
 
