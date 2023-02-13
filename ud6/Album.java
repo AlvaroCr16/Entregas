@@ -14,7 +14,7 @@ class Cancion {
     public String toString() {
         return "Cancion: \n" +
                 "Titulo = " + titulo +
-                " / Duracion=" + duracion + "\n";
+                " / Duracion = " + duracion + "\n";
     }
 }
 
@@ -66,7 +66,6 @@ public class Album {
 class main {
     static Scanner sc = new Scanner(System.in);
     static int op;
-    static boolean cont = true;
     static LinkedList<Album> Albums = new LinkedList<>();
     static LinkedList<Cancion> playlist = new LinkedList<>();
     public static void main (String[] args) {
@@ -90,7 +89,7 @@ class main {
     }
     public static void play (LinkedList<Cancion> can3){
         ListIterator<Cancion> it = can3.listIterator();
-        boolean conti = true;
+        boolean cont = true;
         if (can3.isEmpty()){
             System.out.println("No tienes canciones.");
             return;
@@ -98,13 +97,15 @@ class main {
             System.out.println("Escuchando " + it.next());
             MenuPrin();
         }
-        try {
-            boolean haciaAdelante = true;
-            while (cont) {
+        while (cont) {
+            try {
+                boolean haciaAdelante = true;
+
                 System.out.println("¿Que quiere hacer? ");
                 op = sc.nextInt();
                 switch (op) {
                     case 0:
+                        System.out.println("Hasta la proxima.");
                         cont = false;
                         break;
                     case 1:
@@ -146,20 +147,21 @@ class main {
                         it.previous();
                         System.out.println(it.next().getTitulo() + "esta cancion a sido eliminada.");
                         it.remove();
-                        if(it.hasNext()){
+                        if (it.hasNext()) {
                             System.out.println("Escuchando a " + it.next());
-                        }else {
+                        } else {
                             System.out.println("Escuchando a " + it.previous());
                         }
                         break;
                     default:
                         System.out.println("No puedes poner ese número.");
                 }
+
+            } catch (InputMismatchException e) {
+                System.out.println("No puedes poner letras");
+            } catch (NoSuchElementException e) {
+                System.out.println("No hay más canciones.");
             }
-        } catch (InputMismatchException e) {
-            System.out.println("No puedes poner letras");
-        } catch (NoSuchElementException e){
-            System.out.println("No hay más canciones.");
         }
     }
     public static void MenuPrin () {
